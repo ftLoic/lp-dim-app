@@ -4,17 +4,17 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: 'students',
-    pathMatch: 'full',
+    path: '',
+    redirectTo : 'students',
+    pathMatch: 'full'
   },
   {
     path: 'students',
-    loadChildren: () => import('./student/student.module').then(m => m.StudentModule),
+    loadChildren: () => import('./student/student.module').then(m => m.StudentModule)
   },
   {
-    path: "**",
-    component: NotFoundComponent,
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
