@@ -13,20 +13,20 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
-  exports: [
-    MatToolbarModule,
-    MatTableModule,
-    MatCardModule,
-    MatButtonModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatSnackBarModule,
-  ],
+	declarations: [],
+	imports: [CommonModule],
+	exports: [
+		MatToolbarModule,
+		MatTableModule,
+		MatCardModule,
+		MatButtonModule,
+		MatDialogModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatSelectModule,
+		MatDatepickerModule,
+		MatSnackBarModule,
+	],
 })
 export class SharedModule {}

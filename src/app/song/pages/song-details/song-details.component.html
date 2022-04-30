@@ -1,0 +1,16 @@
+<mat-card class='example-card' *ngIf='song$ | async; let song'>
+	<mat-card-header>
+		<mat-card-title>{{song.artist.name | titlecase}} - {{ song.name | titlecase }}</mat-card-title>
+		<mat-card-subtitle>{{ song.duration }}s</mat-card-subtitle>
+	</mat-card-header>
+	<mat-card-actions align='end'>
+		<button mat-raised-button color='warn' (click)='deleteSong(song.id)'>
+			Delete
+		</button>
+		<button mat-raised-button color='primary' (click)='updateSong(song)'>
+			Update
+		</button>
+	</mat-card-actions>
+</mat-card>
+
+<button mat-raised-button color='warn' (click)='goBack()'>Go Back</button>

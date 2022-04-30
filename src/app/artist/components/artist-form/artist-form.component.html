@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{ isUpdateMode ? 'Update' : 'Add' }} artist</h2>
+
+<form [formGroup]='artistForm' (ngSubmit)='onSubmit(artistForm.value)'>
+	<mat-dialog-content class='mat-typography'>
+		<mat-form-field appearance='fill'>
+			<mat-label>Name</mat-label>
+			<input matInput formControlName='name' />
+		</mat-form-field>
+		<br />
+		<mat-form-field appearance='fill'>
+			<mat-label>Genre</mat-label>
+			<mat-select formControlName='genre'>
+				<mat-option value='Blues'>Blues</mat-option>
+				<mat-option value='Reggae'>Reggae</mat-option>
+				<mat-option value='Soul'>Soul</mat-option>
+				<mat-option value='Jazz'>Jazz</mat-option>
+				<mat-option value='Folk'>Folk</mat-option>
+				<mat-option value='Classique'>Classique</mat-option>
+				<mat-option value='Chanson française'>Chanson française</mat-option>
+				<mat-option value='Rock'>Rock</mat-option>
+				<mat-option value='Metal'>Metal</mat-option>
+				<mat-option value='Pop'>Pop</mat-option>
+				<mat-option value='Rap'>Rap</mat-option>
+				<mat-option value='Electro'>Electro</mat-option>
+				<mat-option value='Funk'>Funk</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<br />
+	</mat-dialog-content>
+	<mat-form-field appearance='fill'>
+		<mat-label>Description</mat-label>
+		<textarea matInput formControlName='description'></textarea>
+	</mat-form-field>
+	<br />
+	<mat-form-field appearance='fill'>
+		<mat-label>Image</mat-label>
+		<input matInput formControlName='image' />
+	</mat-form-field>
+	<mat-dialog-actions class='float-right'>
+		<button mat-button (click)='closeForm()'>Annuler</button>
+		<button mat-raised-button color='primary' type='submit' [disabled]='!artistForm.valid'>
+			{{ isUpdateMode ? 'Modifier' : 'Ajouter' }}
+		</button>
+	</mat-dialog-actions>
+</form>
