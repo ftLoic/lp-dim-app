@@ -5,7 +5,7 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
 const routes: Routes = [
 	{
 		path: '',
-		redirectTo: 'artists',
+		redirectTo: 'songs',
 		pathMatch: 'full'
 	},
 	{

@@ -17,7 +17,9 @@
 	<!-- Artist Column -->
 	<ng-container matColumnDef='artist'>
 		<th mat-header-cell *matHeaderCellDef>Artist</th>
-		<td mat-cell *matCellDef='let element'>{{ element.artist.name }}</td>
+		<td mat-cell *matCellDef='let element'>
+			<a href='/artists/{{ element.artist.id }}'>{{ element.artist.name }}</a>
+		</td>
 	</ng-container>
 
 	<!-- Duration Column -->
@@ -25,13 +27,32 @@
 		<th mat-header-cell *matHeaderCellDef>Duration</th>
 		<td mat-cell *matCellDef='let element'>{{ element.duration }}</td>
 	</ng-container>
+
+	<!-- Action Columns -->
+	<!-- Update -->
+	<ng-container matColumnDef='update'>
+		<th mat-header-cell *matHeaderCellDef></th>
+		<td mat-cell *matCellDef='let element'>
+			<button mat-raised-button color='primary' (click)='updateSong(element)'>
+				Update
+			</button>
+	</ng-container>
+	<!-- Delete -->
+	<ng-container matColumnDef='delete'>
+		<th mat-header-cell *matHeaderCellDef></th>
+		<td mat-cell *matCellDef='let element'>
+			<button mat-raised-button color='warn' (click)='deleteSong(element.id)'>
+				Delete
+			</button>
+	</ng-container>
+
 	<tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
-	<tr mat-row *matRowDef='let row; columns: displayedColumns' (click)='showSongDetails(row)' class='clickable'></tr>
+	<tr mat-row *matRowDef='let row; columns: displayedColumns' (click)='showSongDetails($event, row)' class='clickable'></tr>
 </table>
 
 <br />
 
-<button mat-raised-button color='primary' (click)='createArtist()'>
+<button mat-raised-button color='primary' (click)='createSong()'>
 	Create
 </button>
 <br />

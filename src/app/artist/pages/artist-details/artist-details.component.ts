@@ -38,7 +38,7 @@ export class ArtistDetailsComponent implements OnInit {
 	updateArtist(artist: Artist) {
 		const artistFormData: ArtistFormData = {
 			isUpdateMode: true,
-			songToUpdate: artist,
+			artistToUpdate: artist,
 		};
 
 		const dialogRef = this._dialog.open(ArtistFormComponent, {

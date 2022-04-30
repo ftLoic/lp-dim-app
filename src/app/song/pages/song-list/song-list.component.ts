@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Artist } from '../../../core/models/artist';
@@ -16,7 +17,7 @@ import { SongService } from '../../services/song.service';
 export class SongListComponent implements OnInit {
 	song$: Observable<Song[]>;
 	artists: Artist[];
-	displayedColumns: string[] = ['id', 'name', 'artist', 'duration'];
+	displayedColumns: string[] = ['id', 'name', 'artist', 'duration', 'update', 'delete'];
 
 	//Bidouille
 	ids: number[] = [];
@@ -24,6 +25,7 @@ export class SongListComponent implements OnInit {
 	constructor(
 		private _songService: SongService,
 		private _router: Router,
+		private _snackBar: MatSnackBar,
 		public _dialog: MatDialog
 	) {}
 
@@ -35,11 +37,12 @@ export class SongListComponent implements OnInit {
 		this.song$ = this._songService.get();
 	}
 
-	showSongDetails(song: Song) {
-		this._router.navigateByUrl('/songs/' + song.id);
+	showSongDetails($event, song: Song) {
+		if ($event.target.tagName === 'TD')
+			this._router.navigateByUrl('/songs/' + song.id);
 	}
 
-	createArtist() {
+	createSong() {
 		const songFormData: SongFormData = {
 			isUpdateMode: false,
 			idToCreate: Math.max(...this.ids) + 1,
@@ -51,6 +54,34 @@ export class SongListComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe((result) => {
 			this.fetchData();
+		});
+	}
+
+	updateSong(song: Song) {
+		const songFormData: SongFormData = {
+			isUpdateMode: true,
+			songToUpdate: song,
+		};
+
+		const dialogRef = this._dialog.open(SongFormComponent, {
+			data: songFormData,
+		});
+
+		dialogRef.afterClosed().subscribe((result) => {
+			if (result) {
+				this.fetchData();
+			}
+		});
+	}
+
+	deleteSong(id: number) {
+		this._songService.delete(id).subscribe((response) => {
+			this._snackBar.open(response, '', {
+				duration: 2000,
+				panelClass: ['mat-toolbar', 'mat-accent'],
+			});
+
+			this._router.navigateByUrl('/artists');
 		});
 	}
 

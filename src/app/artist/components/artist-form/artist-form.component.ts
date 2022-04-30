@@ -34,24 +34,24 @@ export class ArtistFormComponent implements OnInit {
 		this.artistForm = this._formBuilder.group({
 			id: [
 				this.data.isUpdateMode
-					? this.data.songToUpdate.id
+					? this.data.artistToUpdate.id
 					: this.data.idToCreate,
 				Validators.required,
 			],
 			name: [
-				this.data.isUpdateMode ? this.data.songToUpdate.name : '',
+				this.data.isUpdateMode ? this.data.artistToUpdate.name : '',
 				Validators.required,
 			],
 			genre: [
-				this.data.isUpdateMode ? this.data.songToUpdate.genre : '',
+				this.data.isUpdateMode ? this.data.artistToUpdate.genre : '',
 				Validators.required,
 			],
 			image: [
-				this.data.isUpdateMode ? this.data.songToUpdate.image : '',
+				this.data.isUpdateMode ? this.data.artistToUpdate.image : '',
 				Validators.required,
 			],
 			description: [
-				this.data.isUpdateMode ? this.data.songToUpdate.description : '',
+				this.data.isUpdateMode ? this.data.artistToUpdate.description : '',
 				Validators.required
 			]
 		});

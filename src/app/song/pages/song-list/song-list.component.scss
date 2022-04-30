@@ -9,3 +9,7 @@ table {
 		background-color: lightgray;
 	}
 }
+
+button span {
+	pointer-events: none;
+}

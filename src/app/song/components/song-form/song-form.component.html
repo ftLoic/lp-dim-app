@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>{{ isUpdateMode ? 'Update' : 'Add' }} song</h2>
 
 <form [formGroup]='songForm' (ngSubmit)='onSubmit(songForm.value)'>
+	<h2 mat-dialog-title>{{ isUpdateMode ? 'Update' : 'Add' }} song</h2>
 	<mat-dialog-content class='mat-typography'>
 		<mat-form-field appearance='fill'>
 			<mat-label>Name</mat-label>
@@ -12,14 +12,13 @@
 			<input matInput formControlName='duration' type='number' pattern='\d*' />
 		</mat-form-field>
 		<br />
+		<mat-form-field appearance='fill'>
+			<mat-label>Artist</mat-label>
+			<mat-select formControlName='artist'>
+				<mat-option *ngFor='let a of artists | async' [value]='a.id'>{{ a.name }}</mat-option>
+			</mat-select>
+		</mat-form-field>
 	</mat-dialog-content>
-	<mat-form-field appearance='fill'>
-		<mat-label>Artist</mat-label>
-		<mat-select formControlName='artist'>
-			<mat-option *ngFor='let a of artists | async' [value]='a.id'>{{ a.name }}</mat-option>
-		</mat-select>
-	</mat-form-field>
-	<br />
 	<mat-dialog-actions class='float-right'>
 		<button mat-button (click)='closeForm()'>Annuler</button>
 		<button mat-raised-button color='primary' type='submit' [disabled]='!songForm.valid'>
